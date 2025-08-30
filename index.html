@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balkan Flights - Günstige Flüge nach Kosovo, Albanien & Nordmazedonien</title>
+    <meta name="description" content="Finde die günstigsten Flüge nach Pristina, Skopje, Tirana. Speziell für die Balkan-Diaspora in Deutschland, Österreich und der Schweiz.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .flags {
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+
+        /* Search Box */
+        .search-box {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            color: #333;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group select,
+        .form-group input {
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Popular Routes */
+        .routes {
+            padding: 80px 0;
+        }
+
+        .routes h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .routes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .route-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .route-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .route-header {
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .route-body {
+            padding: 1.5rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* About */
+        .about {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .beta-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .coming-soon {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            color: #2d3436;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                ✈️ Balkan Flights <span class="beta-badge">BETA</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#routes">Routen</a></li>
+                <li><a href="#about">Über uns</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Günstige Flüge in den Balkan</h1>
+            <p>Speziell für die Diaspora: Deutschland, Österreich, Schweiz → Kosovo, Albanien, Nordmazedonien</p>
+            <div class="flags">🇩🇪 🇦🇹 🇨🇭 ✈️ 🇽🇰 🇦🇱 🇲🇰</div>
+
+            <div class="search-box">
+                <div class="search-form">
+                    <div class="form-group">
+                        <label for="from">Von</label>
+                        <select id="from">
+                            <option value="FRA">Frankfurt (FRA)</option>
+                            <option value="ZUR">Zürich (ZUR)</option>
+                            <option value="VIE">Wien (VIE)</option>
+                            <option value="DUS">Düsseldorf (DUS)</option>
+                            <option value="MUC">München (MUC)</option>
+                            <option value="STR">Stuttgart (STR)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="to">Nach</label>
+                        <select id="to">
+                            <option value="PRN">🇽🇰 Pristina (PRN)</option>
+                            <option value="SKP">🇲🇰 Skopje (SKP)</option>
+                            <option value="TIA">🇦🇱 Tirana (TIA)</option>
+                            <option value="flexible">🎯 Flexibel (günstigste Option)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Datum</label>
+                        <input type="date" id="date" min="2024-01-01">
+                    </div>
+                    <div class="form-group">
+                        <label for="passengers">Passagiere</label>
+                        <select id="passengers">
+                            <option value="1">1 Erwachsener</option>
+                            <option value="2">2 Erwachsene</option>
+                            <option value="3">3 Erwachsene</option>
+                            <option value="4">4+ Erwachsene</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="search-btn" onclick="searchFlights()">🔍 Flüge suchen</button>
+                <div class="coming-soon">🚧 Vollständiger Service ab Februar 2024</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Warum Balkan Flights?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Balkan-Spezialist</h3>
+                    <p>Wir kennen alle Tricks für günstige Flüge nach Kosovo, Albanien und Nordmazedonien. Inklusive Bus-Verbindungen als Alternative.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>Beste Preise</h3>
+                    <p>Vergleichen Sie Preise von über 20 Airlines. Oft 20-40% günstiger als große Booking-Seiten für Balkan-Routen.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🚌</div>
+                    <h3>Flug + Bus Kombination</h3>
+                    <p>Flug nach Skopje + Bus nach Pristina oft günstiger als Direktflug. Wir finden die beste Kombination für Sie.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>Mehrsprachiger Support</h3>
+                    <p>Deutsch, Albanisch, Serbisch - wir sprechen Ihre Sprache und verstehen die Bedürfnisse der Diaspora.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>WhatsApp Integration</h3>
+                    <p>Benachrichtigungen über Preisänderungen und Flug-Updates direkt auf WhatsApp - so wie Sie es gewohnt sind.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Familien-Buchungen</h3>
+                    <p>Spezielle Gruppenrabatte und flexible Zahlungsoptionen für Großfamilien-Reisen in die Heimat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Routes -->
+    <section class="routes" id="routes">
+        <div class="container">
+            <h2>Beliebte Routen</h2>
+            <div class="routes-grid">
+                <div class="route-card">
+                    <div class="route-header">
+                        <h3>Frankfurt → Pristina</h3>
+                        <div>🇩🇪 ✈️ 🇽🇰</div>
+                    </div>
+                    <div class="route-body">
+                        <p>Direktflüge mit Eurowings</p>
+                        <p>2h 15min Flugzeit</p>
+                        <div class="price">ab 289€</div>
+                    </div>
+                </div>
+                <div class="route-card">
+                    <div class="route-header">
+                        <h3>Zürich → Skopje</h3>
+                        <div>🇨🇭 ✈️ 🇲🇰</div>
+                    </div>
+                    <div class="route-body">
+                        <p>Mit Austrian via Wien</p>
+                        <p>+ 3h Bus nach Pristina</p>
+                        <div class="price">ab 245€</div>
+                    </div>
+                </div>
+                <div class="route-card">
+                    <div class="route-header">
+                        <h3>Wien → Tirana</h3>
+                        <div>🇦🇹 ✈️ 🇦🇱</div>
+                    </div>
+                    <div class="route-body">
+                        <p>Direktflug Austrian</p>
+                        <p>1h 45min Flugzeit</p>
+                        <div class="price">ab 312€</div>
+                    </div>
+                </div>
+                <div class="route-card">
+                    <div class="route-header">
+                        <h3>Düsseldorf → Pristina</h3>
+                        <div>🇩🇪 ✈️ 🇽🇰</div>
+                    </div>
+                    <div class="route-body">
+                        <p>Saisonflüge Eurowings</p>
+                        <p>Sommer: 2x wöchentlich</p>
+                        <div class="price">ab 399€</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Für die Balkan-Diaspora entwickelt</h2>
+                    <p>Als Teil der Diaspora verstehen wir die Herausforderungen bei der Flugbuchung in die Heimat. Überteuerte Preise, komplizierte Verbindungen und schlechter Service gehören der Vergangenheit an.</p>
+                    <p>Unser Team spricht Ihre Sprache und kennt die besten Routen, Zeiten und Tricks für günstige Balkan-Flüge.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number">20+</div>
+                            <div>Airlines verglichen</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">3</div>
+                            <div>Sprachen Support</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div>Routen abgedeckt</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">24/7</div>
+                            <div>WhatsApp Support</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div style="font-size: 15rem; text-align: center;">🌍</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Balkan Flights</h3>
+                    <p>Günstige Flüge in den Balkan - speziell für die Diaspora in DACH-Ländern.</p>
+                    <p><strong>Launch:</strong> Februar 2024</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Flug-Vergleich</a></li>
+                        <li><a href="#">Flug + Bus Kombination</a></li>
+                        <li><a href="#">Gruppen-Buchungen</a></li>
+                        <li><a href="#">Preisalerts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Destinationen</h3>
+                    <ul>
+                        <li><a href="#">🇽🇰 Kosovo (Pristina)</a></li>
+                        <li><a href="#">🇦🇱 Albanien (Tirana)</a></li>
+                        <li><a href="#">🇲🇰 Nordmazedonien (Skopje)</a></li>
+                        <li><a href="#">🇷🇸 Serbien (Belgrad)</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <ul>
+                        <li>📧 info@balkan-flights.com</li>
+                        <li>📱 WhatsApp: +49 xxx xxx xxxx</li>
+                        <li>🌐 Deutsch, Shqip, Српски</li>
+                        <li>📍 Frankfurt, Deutschland</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #555; padding-top: 20px; margin-top: 20px;">
+                <p>&copy; 2024 Balkan Flights. Made with ❤️ for the diaspora community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set today's date as minimum for date input
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+        
+        // Set tomorrow as default
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('date').value = tomorrow.toISOString().split('T')[0];
+
+        function searchFlights() {
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const date = document.getElementById('date').value;
+            const passengers = document.getElementById('passengers').value;
+
+            // Show coming soon message
+            alert(`🚧 Feature in Entwicklung!\n\nSuche: ${from} → ${to}\nDatum: ${date}\nPassagiere: ${passengers}\n\n✈️ Vollständiger Service ab Februar 2024\n📧 Für Early Access: info@balkan-flights.com`);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
